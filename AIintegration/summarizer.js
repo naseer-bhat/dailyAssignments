@@ -18,12 +18,13 @@ export const summarizeText = async (req, res) => {
 
     TEXT: ${inputText}
   `;
-
     const result = await model.generateContent(prompt);
+    console.log(result);
     const response = await result.response;
     const text = await response.text();
     console.log(text);
     return res.send(text);
+    // return res.status(200).json({ summary: text });
   } catch (error) {
     return res.status(500).json({ error: "Could not parse JSON" });
   }
